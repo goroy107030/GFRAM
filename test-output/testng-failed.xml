@@ -8,9 +8,9 @@
     <classes>
       <class name="testsuite.HomePageTest">
         <methods>
-          <include name="homePagetitletest"/>
           <include name="trailing"/>
           <include name="setup"/>
+          <include name="ins"/>
         </methods>
       </class> <!-- testsuite.HomePageTest -->
     </classes>

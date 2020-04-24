@@ -37,7 +37,7 @@ public BaseClass(){
 	}finally {
 			System.out.println("Property File Initiated");
 	}
-	reporter=new ExtentHtmlReporter(".\\Report\\TestResult.html" );
+	reporter=new ExtentHtmlReporter(".\\Report\\TestResult.html");
 	extent=new ExtentReports();
 	extent.attachReporter(reporter);
 }

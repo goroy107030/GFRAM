@@ -30,10 +30,15 @@ public class HomePageTest extends BaseClass{
 		CommonUtil.hover(HomePage.aboutuslink());
 		CommonUtil.dwait(5);
 		HomePage.ourStrucLink().click();
-		CommonUtil.dwait(5);
+		CommonUtil.dwait(10);
 		String astruc=driver.getTitle();
 		Assert.assertTrue(astruc.contains("Our structure"));
 		
+	}
+	
+	@Test
+	public void ins() {
+		Assert.assertTrue(false);
 	}
 	
 	

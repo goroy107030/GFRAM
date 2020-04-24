@@ -1,11 +1,14 @@
 package utility;
 
+import java.io.IOException;
+
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
 import base.BaseClass;
@@ -16,20 +19,32 @@ public class Listeners extends BaseClass implements ITestListener{
 	public void onTestStart(ITestResult result) {
 		
 		System.out.println("Your Test Case is about to Execute.Test Case Name is: "+result.getName());
+		extent.setSystemInfo("Windows7", "Java");
 		
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		System.out.println("Congrats..your Test case is Passed.Test Case name is: "+result.getName());
 		logger=extent.createTest(result.getName());
-		logger.log(Status.PASS, "PASS");
+		try {
+			logger.log(Status.PASS,"Pass").addScreenCaptureFromPath(CommonUtil.capture(result.getName()));
+		} catch (IOException e) {
+			System.out.println("Screen shots not generated");
+			e.printStackTrace();
+		}
+	
 		
 	}
 
 	public void onTestFailure(ITestResult result) {
 		System.out.println("Oops..your Test case is Failed.Test Case name is: "+result.getName());
 		logger=extent.createTest(result.getName());
-		logger.log(Status.FAIL, "FAIL");
+		try {
+			logger.log(Status.FAIL,result.getThrowable()).addScreenCaptureFromPath(CommonUtil.capture(result.getName()));
+		} catch (IOException e) {
+			System.out.println("Screen shots not generated");
+			e.printStackTrace();
+		}
 		
 	}
 
